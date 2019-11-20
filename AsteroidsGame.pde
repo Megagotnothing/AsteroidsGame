@@ -1,32 +1,68 @@
 Spaceship kek;
+Star[] stars;
+
+boolean boost = false;
+boolean turnLeft = false;
+boolean turnRight = false;
+boolean stop = false;
+double slowDown = 0.99;
 public void setup() 
 {
 
   size(600,600);
   frameRate(60);
   kek = new Spaceship();
-
+  stars = new Star[200];
+  for(int i = 0; i < stars.length; i++)
+  {
+  	stars[i] = new Star();
+  	stars[i].show();
+  }
 }
 public void draw() 
 {
 	background(0);
 	kek.move();
 	kek.show();
+	for(int i = 0; i < stars.length; i++)
+ 	{
+ 
+  		stars[i].show();
+  	}
+
+	if(boost)
+	{
+		kek.accelerate(0.5);
+	}
+	if(turnRight)
+	{
+		kek.turn(5);
+	}
+	if(turnLeft)
+	{
+		kek.turn(-5);
+	}
+	if(stop)
+	{
+		kek.setDirectionX(0.9*kek.getDirectionX());
+		kek.setDirectionY(0.9*kek.getDirectionY());
+	}
+
 	if(kek.getDirectionX()>= 0)
 	{
-		kek.accelerate(-0.1);
+		kek.setDirectionX(slowDown*kek.getDirectionX());
 	}
 	if(kek.getDirectionX() <= 0)
 	{
-		kek.accelerate(0.1);
+		kek.setDirectionX(slowDown*kek.getDirectionX());
 	}
 	if(kek.getDirectionY() >= 0)
 	{
-		kek.accelerate(-0.1);
+		kek.setDirectionY(slowDown*kek.getDirectionY());
 	}
 	if(kek.getDirectionY() <= 0)
 	{
-		kek.accelerate(0.1);
+		kek.setDirectionY(slowDown*kek.getDirectionY());
 	}
 	if(key =='x')
 	{
@@ -40,11 +76,31 @@ public void keyPressed()
 {
 	if(key == 'w')
 	{
-		kek.accelerate(1);
+		boost = true;
 	}
-	if(key == 'd'){kek.turn(5);}
-	if(key == 'a'){kek.turn(-5);}
-	if(key == 's'){kek.accelerate(-.1);}
+	if(key == 'd'){turnRight = true;}
+	if(key == 'a'){turnLeft = true;}
+	if(key == 's'){stop = true;} 
+}
+
+void keyReleased()
+{
+	if(key == 'w')
+	{
+		boost = false;
+	}
+	if(key == 'd')
+	{
+		turnRight = false;
+	}
+	if(key == 'a')
+	{
+		turnLeft = false;
+	}
+	if(key == 's')
+	{
+		stop = false;
+	}
 }
 
 
