@@ -1,4 +1,5 @@
 Spaceship kek;
+Asteroids[] lmao;
 Star[] stars;
 
 boolean boost = false;
@@ -13,10 +14,14 @@ public void setup()
   frameRate(60);
   kek = new Spaceship();
   stars = new Star[200];
+  lmao = new Asteroids[20];
   for(int i = 0; i < stars.length; i++)
   {
   	stars[i] = new Star();
-  	stars[i].show();
+  }
+  for(int i = 0; i < lmao.length; i++)
+  {
+  	lmao[i] = new Asteroids();
   }
 }
 public void draw() 
@@ -24,6 +29,11 @@ public void draw()
 	background(0);
 	kek.move();
 	kek.show();
+  
+	for(int i = 0; i < lmao.length; i++)
+	{
+		lmao[i].show();
+	}
 	for(int i = 0; i < stars.length; i++)
  	{
  
