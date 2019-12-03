@@ -1,5 +1,6 @@
 Spaceship kek;
-Asteroids[] lmao;
+ArrayList <Asteroids> lmao = new ArrayList <Asteroids>();
+int initialAst = 10; 
 Star[] stars;
 
 boolean boost = false;
@@ -10,18 +11,18 @@ double slowDown = 0.99;
 public void setup() 
 {
 
-  size(600,600);
+  size(900,900);
   frameRate(60);
   kek = new Spaceship();
   stars = new Star[200];
-  lmao = new Asteroids[20];
+
   for(int i = 0; i < stars.length; i++)
   {
   	stars[i] = new Star();
   }
-  for(int i = 0; i < lmao.length; i++)
+  for(int i = 0; i < initialAst; i++)
   {
-  	lmao[i] = new Asteroids();
+  	lmao.add(new Asteroids());
   }
 }
 public void draw() 
@@ -30,9 +31,11 @@ public void draw()
 	kek.move();
 	kek.show();
   
-	for(int i = 0; i < lmao.length; i++)
+	for(int i = 0; i < lmao.size(); i++)
 	{
-		lmao[i].show();
+		lmao.get(i).show();
+		lmao.get(i).move2();
+		lmao.get(i).move();
 	}
 	for(int i = 0; i < stars.length; i++)
  	{
@@ -112,5 +115,3 @@ void keyReleased()
 		stop = false;
 	}
 }
-
-

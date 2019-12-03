@@ -1,12 +1,13 @@
 class Floater //Do NOT modify the Floater class! Make changes in the Spaceship class 
 {   
   protected int corners;  //the number of corners, a triangular floater has 3   
-  protected int[] xCorners;   
-  protected int[] yCorners;   
+  protected float[] xCorners;   
+  protected float[] yCorners;   
   protected int myColor;   
   protected double myCenterX, myCenterY; //holds center coordinates   
   protected double myDirectionX, myDirectionY; //holds x and y coordinates of the vector for direction of travel   
-  protected double myPointDirection; //holds current direction the ship is pointing in degrees    
+  protected double myPointDirection; //holds current direction the ship is pointing in degrees 
+  protected boolean fil;   
 
   //Accelerates the floater in the direction it is pointing (myPointDirection)   
   public void accelerate (double dAmount)   
@@ -62,6 +63,8 @@ class Floater //Do NOT modify the Floater class! Make changes in the Spaceship c
     rotate(dRadians);
     
     //draw the polygon
+    if(fil)
+      noFill();
     beginShape();
     for (int nI = 0; nI < corners; nI++)
     {
@@ -73,4 +76,5 @@ class Floater //Do NOT modify the Floater class! Make changes in the Spaceship c
     rotate(-1*dRadians);
     translate(-1*(float)myCenterX, -1*(float)myCenterY);
   }   
+
 } 
