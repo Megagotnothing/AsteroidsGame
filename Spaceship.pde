@@ -1,5 +1,6 @@
 public class Spaceship extends Floater  
 {   
+    int health;
    	public Spaceship()
     {
     	corners = 4;
@@ -26,6 +27,8 @@ public class Spaceship extends Floater
     	myColor = color(255,255,0);
         fil = false;
 
+        health = 100;
+
     }
     
     public void setX(int x){myCenterX = x;}
@@ -39,5 +42,12 @@ public class Spaceship extends Floater
 
     public void setDirectionY(double y){myDirectionY = y;}
     public double getDirectionY(){return (double)myDirectionY;}
+
+    public double getPointDirection(){return (double)myPointDirection;}
+
+    public int getHealth() {return (int)health;}
+    public void damage(int n){health = health - n;}
+
+    public void setColor(int r, int g, int b){myColor = color(r,g,b);}
 
 }
